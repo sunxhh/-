@@ -1,0 +1,32 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true,
+    "jquery": true
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "globals": {
+    "angular": true,
+    "jQuery": true,
+    "$": true
+  },
+  "rules": {
+    "indent": ["off"],
+    "linebreak-style": ["off"],
+    "quotes": [
+            "off",
+            "double"
+        ],
+    "semi": [
+            "error",
+            "always"
+        ]
+  }
+}
