@@ -1,6 +1,7 @@
 // 获取移动端触摸的位置
 export function getTouchPos(e) {
-  let touch = e.touches[0];
+  let touch = e.touches ? e.touches[0] : e;
+
   return {
     x: touch.clientX,
     y: touch.clientY
@@ -8,19 +9,26 @@ export function getTouchPos(e) {
 }
 
 // 获取移动端移动速度
-export function getMoveSpeed(touchMovePointList) {
-  let computeByPointNumber = 3;
-  if (touchMovePointList.length < computeByPointNumber) {
-    return 0;
+export function getMoveSpeed(movePointList) {
+  let computeByPointNumber = 5;
+  if (movePointList.length < computeByPointNumber) {
+    return {
+      x: 0,
+      y: 0
+    };
   }
-  let start = touchMovePointList.slice(
+  let start = movePointList.slice(
     0 - computeByPointNumber,
     1 - computeByPointNumber
   )[0];
-  let end = touchMovePointList.slice(-1)[0];
-  let len = end.x - start.x;
+  let end = movePointList.slice(-1)[0];
+  let xLen = end.x - start.x;
+  let yLen = end.y - start.y;
   let time = end.timeStamp - start.timeStamp;
-  return len / time;
+  return {
+    x: xLen / time,
+    y: yLen / time
+  };
 }
 
 // 根据起始速度结束速度计算移动长度

@@ -51,7 +51,7 @@ module.exports = {
     "no-cond-assign": 2, // 条件不能有赋值
     "no-const-assign": 2, // 禁止赋值常量(const)
     "no-control-regex": 2, // reg中不能有控制符号
-    "no-debugger": 2, // node环境prod禁用
+    "no-debugger": 0, // node环境prod禁用
     "no-delete-var": 2, // 不能delete变量，可以用在对象
     "no-dupe-args": 2, // 参数不能重复
     "no-dupe-class-members": 2, // class中方法不能有重复
