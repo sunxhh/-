@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // 获得路径
 const resolve = function(src) {
-  return path.join(__dirname, "..", src);
+  return path.join(__dirname, '..', src);
 };
 
 module.exports = {
@@ -34,28 +34,28 @@ module.exports = {
       }, {
         test: /\.css$/,
         use: [
-					'style-loader',
-					'css-loader'
-				]
-			}, {
+          'style-loader',
+          'css-loader'
+        ]
+      }, {
         test: /\.styl$/,
         use: [
-					'style-loader',
-					'css-loader',
-					'stylus-loader'
-				],
-			}, {
+          'style-loader',
+          'css-loader',
+          'stylus-loader'
+        ],
+      }, {
         test: /\.(ttf|woff|svg|eot)$/,
         use: [
-					'url-loader?name=../fonts/[name].[ext]?[hash]'
-				],
-			}, {
+          'url-loader?name=../fonts/[name].[ext]?[hash]'
+        ],
+      }, {
         // 图片加载器，file-loader，更适合图片，可以将较小的图片转成base64，减少http请求
         // 如下配置，将小于8192byte的图片转成base64码
         test: /\.(png|jpg|gif)$/,
         loader: 'url-loader?limit=8192&name=../images/[name].[ext]?[hash]',
-			}
-		]
+      }
+    ]
   },
   resolve: {
     // 可以忽略的文件类型

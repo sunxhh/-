@@ -21,6 +21,21 @@ export default class Scroll {
   }
 
   bindle() {
+    const wrapper = this.wrapper;
+    this.bindlePC(wrapper);
+    this.bindleMobile(wrapper);
+  }
+  bindlePC(wrapper) {
+    console.log(1);
+    wrapper.addEventListener('mousedown', function() {
+      console.log(this);
+    });
+  }
+  bindleMobile(wrapper) {
 
   }
 }
+
+new Scroll({
+  wrapper: document.getElementById('app')
+});
