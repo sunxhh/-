@@ -16,7 +16,11 @@ module.exports = {
     path: resolve('dist')
   },
   plugins: [
-    new CleanWebpackPlugin([resolve('dist')]),
+    new CleanWebpackPlugin('../dist', {
+      root: '/full/project/path/server/public',
+      verbose: true,
+      dry: false
+    }),
     new HtmlWebpackPlugin({
       template: resolve('/index.html')
     })

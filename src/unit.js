@@ -23,7 +23,7 @@ export function getMoveSpeed(touchMovePointList) {
   return len / time;
 }
 
-// 根据起始速度结束速度摩擦系数计算长度
+// 根据起始速度结束速度计算移动长度
 export function getInertiaMoveLen(speed, resistance, endSpeed) {
   if (Math.abs(speed) < 1) {
     return 0;
