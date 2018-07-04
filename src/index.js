@@ -62,8 +62,16 @@ export default class Scroll {
       this.moving(e);
     });
     wrapper.addEventListener('mouseup', () => {
-      this.isStartMove = false;
-      this.endMove();
+      if (this.isStartMove) {
+        this.isStartMove = false;
+        this.endMove();
+      }
+    });
+    wrapper.addEventListener('mouseout', (e) => {
+      if (this.isStartMove) {
+        this.isStartMove = false;
+        this.endMove();
+      }
     });
   }
 
@@ -80,12 +88,16 @@ export default class Scroll {
       this.moving(e);
     });
     wrapper.addEventListener('touchend', () => {
-      this.isStartMove = false;
-      this.endMove();
+      if (this.isStartMove) {
+        this.isStartMove = false;
+        this.endMove();
+      }
     });
     wrapper.addEventListener('touchcancel', () => {
-      this.isStartMove = false;
-      this.endMove();
+      if (this.isStartMove) {
+        this.isStartMove = false;
+        this.endMove();
+      }
     });
   }
 
