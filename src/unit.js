@@ -10,7 +10,7 @@ export function getTouchPos(e) {
 
 // 获取移动端移动速度
 export function getMoveSpeed(movePointList) {
-  let computeByPointNumber = 5;
+  let computeByPointNumber = 3;
   if (movePointList.length < computeByPointNumber) {
     return {
       x: 0,
@@ -24,7 +24,9 @@ export function getMoveSpeed(movePointList) {
   let end = movePointList.slice(-1)[0];
   let xLen = end.x - start.x;
   let yLen = end.y - start.y;
-  let time = end.timeStamp - start.timeStamp;
+  console.log(xLen, yLen);
+  // 时间按 每秒60次计算
+  let time = (end.timeStamp - start.timeStamp) * 6 / 100;
   return {
     x: xLen / time,
     y: yLen / time

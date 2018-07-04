@@ -3,7 +3,7 @@ const defaultConfig = {
   scrollX: true,
   scrollY: true,
   inertia: true,
-  resistance: 0.1,
+  resistance: 2,
   snap: true,
   snapThreshold: 0.3,
 };
@@ -159,18 +159,21 @@ export default class Scroll {
     let speedDirection = getMoveSpeed(data.movePointList);
 
     let radius = Math.atan2(speedDirection.y, speedDirection.x);
+
     let resistance = config.resistance;
-    let xResistance = resistance * Math.cos(radius);
-    let yResistance = resistance * Math.sin(radius);
+    let xResistance = Math.abs(resistance * Math.cos(radius));
+    let yResistance = Math.abs(resistance * Math.sin(radius));
+
     return new Promise((resolve, reject) => {
       if (Math.abs(speedDirection.x) < 1 && Math.abs(speedDirection.y) < 1) {
         resolve();
         return;
       }
+
       let count = 0;
       let maxCount = Math.floor(Math.abs(speedDirection.x) / xResistance);
 
-      function getSpeed(cSpeed, cCount, cResistance) {
+      function getSpeedLen(cSpeed, cCount, cResistance) {
         let curSpeed = cSpeed - cCount * cResistance;
         if (cSpeed < 0) {
           curSpeed = cSpeed + cCount * cResistance;
@@ -184,8 +187,8 @@ export default class Scroll {
           return;
         }
         let movePointLen = {
-          x: getSpeed(speedDirection.x, count, xResistance),
-          y: getSpeed(speedDirection.y, count, yResistance)
+          x: getSpeedLen(speedDirection.x, count, xResistance),
+          y: getSpeedLen(speedDirection.y, count, yResistance)
         };
 
         self.moveWrapper(self.getLastPointByShitPos(movePointLen));
@@ -194,6 +197,15 @@ export default class Scroll {
       }
       move();
     });
+  }
+
+  // 移动结束后
+  resetMove() {
+    let data = this.data;
+    data.shiftPos.start = data.shiftPos.current;
+    data.startPos = {};
+    data.movePoint = [];
+    // this.resetPos();
   }
 }
 
