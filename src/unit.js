@@ -24,7 +24,6 @@ export function getMoveSpeed(movePointList) {
   let end = movePointList.slice(-1)[0];
   let xLen = end.x - start.x;
   let yLen = end.y - start.y;
-  console.log(xLen, yLen);
   // 时间按 每秒60次计算
   let time = (end.timeStamp - start.timeStamp) * 6 / 100;
   return {
